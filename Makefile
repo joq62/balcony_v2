@@ -6,8 +6,8 @@ DEPS = cowboy
 dep_cowboy_commit = master
 
 # Need to change path based on how its deployed and dir name!
-# include */balcony/erlang.mk
-include erlang.mk 
+include */balcony/erlang.mk
+#include erlang.mk 
 # Joq Erlang code
 c0:
 	rm -rf *~ *.dump;
