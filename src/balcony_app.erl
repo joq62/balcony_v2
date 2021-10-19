@@ -45,13 +45,16 @@
 %% --------------------------------------------------------------------
 start(_Type, _Args) ->
     io:format("Starting:~p~n",[file:get_cwd()]),
+    PathToFile=code:where_is_file("index.html"),
+    io:format("PathToFile :~p~n",[PathToFile]),
+    timer:sleep(1000),
     Port=8081,
     ssl:start(),
     application:start(crypto),
     application:start(ranch), 
     application:start(cowlib), 
     application:start(cowboy), 
-    PathToFile=code:where_is_file("index.html"),
+
    % PathToFile="applications/balcony/ebin/index.html",
     HelloRoute = { "/", cowboy_static, {file,PathToFile} },
     WebSocketRoute = {"/please_upgrade_to_websocket", balcony_handler, []},
