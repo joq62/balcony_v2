@@ -54,7 +54,7 @@ start(_Type, _Args) ->
     Dir=balcony,
     HtmlFile="index.html",
 
-    HelloRoute = { "/applications", cowboy_static, {priv_file,Dir, HtmlFile} },
+    HelloRoute = { "/applications/", cowboy_static, {priv_file,Dir, HtmlFile} },
     WebSocketRoute = {"/please_upgrade_to_websocket", balcony_handler, []},
     CatchallRoute = {"/[...]", no_matching_route_handler, []},
 
