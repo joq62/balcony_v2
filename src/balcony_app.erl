@@ -55,10 +55,10 @@ start(_Type, _Args) ->
     {ok,FullPath}=file:get_cwd(),
     
   %  Dir=list_to_atom(filename:join(filename:basename(FullPath),"applications")),
-    Dir=balcony,
+    Dir=list_to_atom(filename:join("applications","balcony")),
     HtmlFile="index.html",
 
-    HelloRoute = { "/joq_in_action/applications", cowboy_static, {priv_file,Dir, HtmlFile} },
+    HelloRoute = { "/joq_in_action", cowboy_static, {priv_file,Dir, HtmlFile} },
     WebSocketRoute = {"/please_upgrade_to_websocket", balcony_handler, []},
     CatchallRoute = {"/[...]", no_matching_route_handler, []},
 
