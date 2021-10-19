@@ -51,10 +51,12 @@ start(_Type, _Args) ->
     application:start(ranch), 
     application:start(cowlib), 
     application:start(cowboy),    
-    Dir="balcony",
+%    Dir=list_to_atom(filename:join(["balcony","priv"])),
+    {ok,FullPath}=file:get_cwd(),
+    Dir=list_to_atom(filename:basename(FullPath)),
     HtmlFile="index.html",
 
-    HelloRoute = { "/applications", cowboy_static, {priv_file,Dir, HtmlFile} },
+    HelloRoute = { "/", cowboy_static, {priv_file,Dir, HtmlFile} },
     WebSocketRoute = {"/please_upgrade_to_websocket", balcony_handler, []},
     CatchallRoute = {"/[...]", no_matching_route_handler, []},
 
