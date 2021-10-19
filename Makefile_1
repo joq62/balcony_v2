@@ -24,6 +24,4 @@ balcony:
 	cp src/*.app ebin;
 	erlc -o ebin src/*.erl;
 	cp deps/cowboy/ebin/* ebin;
-	cp deps/cowlib/ebin/* ebin;
-	cp deps/ranch/ebin/* ebin;
-	erl -pa ebin -run balcony boot -sname balcony
+	erl -pa deps/cowboy/ebin -pa deps/ranch/ebin -pa deps/cowlib/ebin -pa ebin -run balcony boot -sname balcony
