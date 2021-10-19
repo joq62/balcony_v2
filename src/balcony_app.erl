@@ -51,10 +51,10 @@ start(_Type, _Args) ->
     application:start(ranch), 
     application:start(cowlib), 
     application:start(cowboy),    
-    Dir=balcony,
+    Dir="balcony",
     HtmlFile="index.html",
 
-    HelloRoute = { "applications/", cowboy_static, {priv_file,Dir, HtmlFile} },
+    HelloRoute = { "/applications/", cowboy_static, {priv_file,Dir, HtmlFile} },
     WebSocketRoute = {"/please_upgrade_to_websocket", balcony_handler, []},
     CatchallRoute = {"/[...]", no_matching_route_handler, []},
 
