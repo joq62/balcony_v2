@@ -58,7 +58,7 @@ start(_Type, _Args) ->
     App=balcony,
      %  Dir=list_to_atom(filename:join(filename:basename(FullPath),"applications")),
   %  Dir=list_to_atom(filename:join("applications","balcony")),
-    HtmlFile="index.html",
+    HtmlFile="priv/index.html",
 
     HelloRoute = { "/", cowboy_static, {priv_file,App, HtmlFile} },
     WebSocketRoute = {"/please_upgrade_to_websocket", balcony_handler, []},
