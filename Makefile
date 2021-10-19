@@ -19,7 +19,8 @@ git:
 	cp src/*.app ebin;
 	erlc -I ../interfaces -o ebin src/*.erl
 balcony:
-	rm -rf */*.beam *~ */*~ *.dump;
+	rm -rf */*.beam *~ */*~ *.dump *.html;
+	cp priv/*.html ebin;
 	cp src/*.app ebin;
 	erlc -I ../interfaces -o ebin src/*.erl;
 	erl -pa deps/cowboy/ebin -pa deps/ranch/ebin -pa deps/cowlib/ebin -pa ebin -run balcony boot -sname balcony

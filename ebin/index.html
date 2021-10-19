@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<title>Websocket client</title>
+</head>
+
+<body>
+
+<h1 >Välkommen till stug controller</h1>
+<div>Temperatur</div>
+<div id="actual_temp"></div>
+<!-- <div id="wanted_temp">Önskad temperatur</div> -->
+
+<!-- <input type="text" id="myInput" value="" oninput="input1()"> -->
+<br>
+<button type="button" onclick="increase_temp();">Öka temperatur</button>
+<button type="button" onclick="decrease_temp();">Minska temperatur</button>
+
+<script>
+    var ws = new WebSocket("ws://joqhome.dynamic-dns.net:8081/please_upgrade_to_websocket");
+
+    ws.onerror = function(event) {
+        console.error("[ME]WebSocket error observed:", event);
+    };
+    ws.onclose = function(event) {
+        console.log("[ME]WebSocket is closed now.");
+    };
+
+
+    ws.onmessage = function (event) {
+			  console.log(event.data);
+			document.getElementById('actual_temp').innerHTML=event.data;
+		};
+	      //alert("Data was retrieved from server and will be inserted in page.");
+	//		console.log(event.data);
+/*		var str=event.data;
+		var arr=str.split(",");
+		switch(arr[0]){
+			case "time":
+				document.getElementById('clock').innerHTML=arr[1];
+				break;
+			case "info":
+				document.getElementById('info').innerHTML=arr[1];
+				break;
+			default:
+				console.log("unmatched signal");
+				console.log(arr[0]);
+		};
+	};
+
+
+  //    $("#server_info").text(event.data);
+
+    };
+*/
+// Joqs own golden code
+
+function increase_temp(){
+				ws.send("increase_temp");
+
+};
+function decrease_temp(){
+				ws.send("decrease_temp");
+
+};
+   </script>
+
+
+</html>
