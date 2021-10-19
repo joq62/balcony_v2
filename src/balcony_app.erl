@@ -51,7 +51,7 @@ start(_Type, _Args) ->
     application:start(ranch), 
     application:start(cowlib), 
     application:start(cowboy),    
-    Dir=applications/balcony,
+    Dir="applications/balcony",
     HtmlFile="index.html",
 
     HelloRoute = { "/", cowboy_static, {priv_file,Dir, HtmlFile} },
