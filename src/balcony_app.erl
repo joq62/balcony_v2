@@ -44,9 +44,12 @@
 %%          {error, Reason}
 %% --------------------------------------------------------------------
 start(_Type, _Args) ->
-    io:format("Starting:~p~n",[file:get_cwd()]),
+    {ok,Cwd}=file:get_cwd(),
+    io:format("Cwd :~p~n",[Cwd]),
     PathToFile=code:where_is_file("index.html"),
     io:format("PathToFile :~p~n",[PathToFile]),
+    FullPath=filename:join(Cwd,PathToFile),
+    io:format("FullPath :~p~n",[FullPath]),
     timer:sleep(1000),
     Port=8081,
     ssl:start(),
@@ -56,7 +59,7 @@ start(_Type, _Args) ->
     application:start(cowboy), 
 
    % PathToFile="applications/balcony/ebin/index.html",
-    HelloRoute = { "/", cowboy_static, {file,PathToFile} },
+    HelloRoute = { "/", cowboy_static, {file,FullPath} },
     WebSocketRoute = {"/please_upgrade_to_websocket", balcony_handler, []},
     CatchallRoute = {"/[...]", no_matching_route_handler, []},
 
